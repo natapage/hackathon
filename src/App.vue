@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import Card from "./components/Card.vue";
+import { questions } from "./data/questions";
+import { Question } from "./types";
 
-const count = ref();
+const score = ref(0);
+const questionIndex = ref(0);
+const question = computed(() => {
+  return questions[questionIndex.value] as Question;
+});
+const isFinished = computed(() => {
+  if (questionIndex.value === questions.length - 1) return true;
+});
 </script>
 
 <template>
@@ -14,12 +23,22 @@ const count = ref();
         <span class="text-accent-logo"> js </span>
         <span class="text-accent-foreground">Quiz</span>
       </div>
-      <div class="text-3xl font-extrabold text-accent">
-        Count: {{ count }}/10
+      <div class="flex-col">
+        <div class="text-3xl font-extrabold text-accent">
+          Question: {{ questionIndex + 1 }}/10
+        </div>
+        <div class="text-3xl font-extrabold text-green-700">
+          Score: {{ score }}
+        </div>
       </div>
     </header>
     <div class="flex items-center justify-center flex-1 bg-gray-200">
-      <Card></Card>
+      <Card
+        @increaseScore="() => score++"
+        @showNext="() => questionIndex++"
+        :question="question"
+        :isFinished="isFinished"
+      ></Card>
     </div>
   </div>
 </template>
