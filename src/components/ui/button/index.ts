@@ -10,8 +10,7 @@ export const buttonVariants = cva(
         default:
           "bg-accent-foreground text-white text-xl font-bold hover:opacity-80",
         submit: "bg-gray-500 text-white text-xl font-bold hover:opacity-80",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        start: "bg-accent-logo text-white text-xl font-bold hover:opacity-80",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",

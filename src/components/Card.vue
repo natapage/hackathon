@@ -11,7 +11,7 @@ const props = defineProps({
   isFinished: Boolean,
 });
 
-const emit = defineEmits(["show-next", "increase-score"]);
+const emit = defineEmits(["show-next", "increase-score", "submit"]);
 
 function onClickNext() {
   if (
@@ -39,7 +39,11 @@ function onClickNext() {
       </div>
     </RadioGroup>
     <div class="flex justify-end gap-10 mt-20">
-      <Button type="Submit" :disabled="!isFinished" variant="submit"
+      <Button
+        type="Submit"
+        @click="() => $emit('submit')"
+        :disabled="!isFinished"
+        variant="submit"
         >Submit</Button
       >
       <Button :disabled="isFinished" @click="onClickNext">Next</Button>
